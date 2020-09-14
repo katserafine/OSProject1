@@ -3,20 +3,21 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>
+
 
 int main(int argc, char *argv[])
 {
-   char value;
    char filename[100];
    int pipe1[2];
    int pipe2[2];
    int PC = 0, SP, IR, AC, X, Y;
    int memoryArr[2000];
-   int i;
    int instructionCount = 0;
    time_t t;
    srand((unsigned) time(&t));
    bool interupt = false;
+   int offset;
    
    //process command line arguements
    if (argc < 3)
@@ -85,7 +86,7 @@ int main(int argc, char *argv[])
                AC = memoryArr[PC];
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -101,7 +102,7 @@ int main(int argc, char *argv[])
                AC = memoryArr[operand];
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -122,7 +123,7 @@ int main(int argc, char *argv[])
                AC = memoryArr[operand];
                
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -137,12 +138,12 @@ int main(int argc, char *argv[])
 
                operand = memoryArr[PC];
 
-               int offset = operand + X;
+               offset = operand + X;
 
                AC = memoryArr[offset];
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -156,12 +157,12 @@ int main(int argc, char *argv[])
 
                operand = memoryArr[PC];
 
-               int offset = operand + Y;
+               offset = operand + Y;
 
                AC = memoryArr[offset];
                
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
                PC++;
@@ -169,11 +170,11 @@ int main(int argc, char *argv[])
 
             case 6:
                //load from sp + X into the AC
-               int offset = SP + X;
+               offset = SP + X;
                AC = memoryArr[offset];
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -193,7 +194,7 @@ int main(int argc, char *argv[])
                memoryArr[operand] = AC;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -207,7 +208,7 @@ int main(int argc, char *argv[])
                AC = (rand() % 100); 
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -221,21 +222,21 @@ int main(int argc, char *argv[])
                operand = memoryArr[PC];
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
                if(operand == 1){
 
                   //WRITE AC as int
-                  printf(AC);
+                  printf("%d", AC);
 
                }
                else{
 
                   //write AC as char
                   char holder = (char) AC;
-                  printf(holder);
+                  printf("%c", holder);
 
                }
 
@@ -249,7 +250,7 @@ int main(int argc, char *argv[])
                AC = AC + X;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -263,7 +264,7 @@ int main(int argc, char *argv[])
                AC = AC + Y;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -277,7 +278,7 @@ int main(int argc, char *argv[])
                AC = AC - X;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -291,7 +292,7 @@ int main(int argc, char *argv[])
                AC = AC - Y;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -305,7 +306,7 @@ int main(int argc, char *argv[])
                X = AC;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -319,7 +320,7 @@ int main(int argc, char *argv[])
                AC = X;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -333,7 +334,7 @@ int main(int argc, char *argv[])
                Y = AC;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -347,7 +348,7 @@ int main(int argc, char *argv[])
                AC = Y;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -361,7 +362,7 @@ int main(int argc, char *argv[])
                SP = AC;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -375,7 +376,7 @@ int main(int argc, char *argv[])
                AC = SP;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -393,7 +394,7 @@ int main(int argc, char *argv[])
                PC = operand;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -415,7 +416,7 @@ int main(int argc, char *argv[])
                }
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -437,7 +438,7 @@ int main(int argc, char *argv[])
                }
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -451,7 +452,7 @@ int main(int argc, char *argv[])
                PC++;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -464,7 +465,7 @@ int main(int argc, char *argv[])
                PC++;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -477,7 +478,7 @@ int main(int argc, char *argv[])
                PC++;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -490,7 +491,7 @@ int main(int argc, char *argv[])
                PC++;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -504,7 +505,7 @@ int main(int argc, char *argv[])
                PC++;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -518,7 +519,7 @@ int main(int argc, char *argv[])
                interupt = true;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -532,7 +533,7 @@ int main(int argc, char *argv[])
                PC++;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -546,7 +547,7 @@ int main(int argc, char *argv[])
                PC++;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -559,7 +560,7 @@ int main(int argc, char *argv[])
                PC++;
 
                if(timer == i){
-                  print("timer has been met, exiting program");  
+                  printf("timer has been met, exiting program");  
                   return 0;   
                }
 
@@ -645,7 +646,7 @@ int main(int argc, char *argv[])
 
       //    }
       //    else(sscanf(buffer, "%d", &memoryArr[nline]) != 1) {
-      //       fprintf(stderr, "Line formatting error\n");
+      //       fprintff(stderr, "Line formatting error\n");
       //       exit(EXIT_FAILURE);
       //       ++nline;
       //    }
