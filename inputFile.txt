@@ -1,0 +1,10 @@
+8 //Get
+14 //Copy
+8 //Get
+16 //Copy
+8 //Get
+10 //Add
+11 //Add
+9 //put
+1
+50
